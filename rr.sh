@@ -27,7 +27,7 @@ rm -rf *.mp4
 rm -rf mask
 rm -rf 付*
 cd /root/
-wget https://github.com/marsws/rrshareweb/blob/master/rrshareweb_centos7.tar.gz
+wget https://appdown.rrysapp.com/rrshareweb_centos7.tar.gz
 #解压
 tar -zxvf rrshareweb_centos7.tar.gz
 #rm -rf rrshareweb_centos7.tar.gz
