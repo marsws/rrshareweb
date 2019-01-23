@@ -2,7 +2,8 @@
 ################ 一键安装人人影视 ##################"
 #防火墙放行端口
 #安装人人影视函数
-function install_rr(){
+pkill -9 rrshareweb
+install_rr(){
 	while :; do
 		echo -e "请输入人人影视端口 ["$magenta"1-65535"$none"]"
 		read -p "$(echo -e "(默认端口: 3001):")" port
@@ -19,31 +20,35 @@ function install_rr(){
 			;;
 		esac
 	done
-cd /home/
+cd /
+rm -rf *.mp4
+rm -rf mask
+rm -rf 付*
+cd /root/
 wget https://appdown.rrysapp.com/rrshareweb_centos7.tar.gz
 #解压
 tar -zxvf rrshareweb_centos7.tar.gz
 rm -rf rrshareweb_centos7.tar.gz
 #修改默认端口
-cat > /home/rrshareweb/conf/rrshare.json <<EOF
+cat > /root/rrshareweb/conf/rrshare.json <<EOF
       {
-      "port" : $port,
+      "port" : 12306,
       "logpath" : "",
       "logqueit" : false,
       "loglevel" : 1,
       "logpersistday" : 2,
-      "defaultsavepath" : "/home"
+      "defaultsavepath" : "/root"
       }
 EOF
 #设定后台运行及开机自启
-if [[ -f /home/rrshareweb/rrshareweb ]]; then
+if [[ -f /root/rrshareweb/rrshareweb ]]; then
 cat >/etc/systemd/system/rr.service <<-EOF
 [Unit]
 Description=rr
 
 [Service]
-WorkingDirectory=/home/rrshareweb/
-ExecStart=/home/rrshareweb/rrshareweb
+WorkingDirectory=/root/rrshareweb/
+ExecStart=/root/rrshareweb/rrshareweb
 Restart=always
 RestartSec=3
 
@@ -59,7 +64,7 @@ echo -e "\n$red 安装出错啦...$none\n" && exit 1
 fi
 
 #获取IP
-osip=$(curl https://api.ip.sb/ip)
+#osip=$(curl https://api.ip.sb/ip)
 echo "------------------------------------------------------"
 echo
 echo "恭喜，安装完成。请访问：http://${osip}:$port$none"
@@ -90,7 +95,7 @@ fi
 		then
 			systemctl disable rr
 		systemctl stop rr
-			rm -rf /home/rrshareweb
+			rm -rf /root/rrshareweb
 			rm -rf /etc/systemd/system/rr.service 
 			echo '卸载完成.'
 			exit
