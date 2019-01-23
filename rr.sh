@@ -3,7 +3,7 @@
 #防火墙放行端口
 #安装人人影视函数
 pkill -9 rrshareweb
-install_rr(){
+/*install_rr(){
 	while :; do
 		echo -e "请输入人人影视端口 ["$magenta"1-65535"$none"]"
 		read -p "$(echo -e "(默认端口: 3001):")" port
@@ -20,15 +20,17 @@ install_rr(){
 			;;
 		esac
 	done
+*/
+rm -rf rrshareweb
 cd /
 rm -rf *.mp4
 rm -rf mask
 rm -rf 付*
 cd /root/
-wget https://github.com/marsws/rrshare_centOS/blob/master/rrshareweb_centos7.tar.gz
+wget https://appdown.rrysapp.com/rrshareweb_centos7.tar.gz
 #解压
 tar -zxvf rrshareweb_centos7.tar.gz
-rm -rf rrshareweb_centos7.tar.gz
+#rm -rf rrshareweb_centos7.tar.gz
 #修改默认端口
 cat > /root/rrshareweb/conf/rrshare.json <<EOF
       {
@@ -63,7 +65,7 @@ else
 echo -e "\n$red 安装出错啦...$none\n" && exit 1
 fi
 
-#获取IP
+/*#获取IP
 #osip=$(curl https://api.ip.sb/ip)
 echo "------------------------------------------------------"
 echo
@@ -73,6 +75,7 @@ echo "点击设置，修改下载目录，登陆账号开始当矿工吧"
 echo
 echo "阿里云请开启入站相应端口"
 echo "------------------------------------------------------"
+*/
 }
 echo "##########欢迎使用人人影视web一键安装脚本##########"
 echo "1.安装人人影视linux"
