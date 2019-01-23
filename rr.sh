@@ -3,11 +3,12 @@
 #防火墙放行端口
 #安装人人影视函数
 pkill -9 rrshareweb
-/*install_rr(){
+install_rr(){
 	while :; do
-		echo -e "请输入人人影视端口 ["$magenta"1-65535"$none"]"
-		read -p "$(echo -e "(默认端口: 3001):")" port
-		[[ -z "$port" ]] && port="3001"
+		//echo -e "请输入人人影视端口 ["$magenta"1-65535"$none"]"
+		//read -p "$(echo -e "(默认端口: 3001):")" port
+		port="12306"
+		//[[ -z "$port" ]] && port="3001"
 		case $port in
 			[1-9] | [1-9][0-9] | [1-9][0-9][0-9] | [1-9][0-9][0-9][0-9] | [1-5][0-9][0-9][0-9][0-9] | 6[0-4][0-9][0-9][0-9] | 65[0-4][0-9][0-9] | 655[0-3][0-5])
 		echo
@@ -20,7 +21,6 @@ pkill -9 rrshareweb
 			;;
 		esac
 	done
-*/
 rm -rf rrshareweb
 cd /
 rm -rf *.mp4
